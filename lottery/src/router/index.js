@@ -11,6 +11,8 @@ const CurrentDetail = () => import(/*webpackChunkName: "CurrentDetail"*/ '@/comp
 const TrendView = () => import(/*webpackChunkName: "TrendView"*/ '@/components/DaTing/Trend/TrendView')
 
 const SSQTrend = () => import(/*webpackChunkName: "SSQTrend"*/ '@/components/DaTing/Trend/SSQTrend/SSQTrend')
+const RedBall = () => import(/*webpackChunkName: "RedBall"*/ '@/components/DaTing/Trend/SSQTrend/redBall')
+const BlueBall = () => import(/*webpackChunkName: "BlueBall"*/ '@/components/DaTing/Trend/SSQTrend/blueBall')
 
 const JingJiChang = () => import(/* webpackChunkName: "JingJiChang" */ '@/components/JingJiChang/JingJiChang')
 const FaXian = () => import(/* webpackChunkName: "FaXian" */ '@/components/FaXian/FaXian')
@@ -35,7 +37,11 @@ export default new Router({
             {
               path:'SSQTrend',
               component:SSQTrend,
-              name:'ssqTrend'
+              name:'ssqTrend',
+              children: [
+                {path:'redBallTrend',component:RedBall,name:'redBall'},
+                {path:'blueBallTrend',component:BlueBall,name:'blueBall'}
+              ]
             }
           ]
         },

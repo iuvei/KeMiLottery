@@ -10,6 +10,12 @@
            <span style="margin:0 auto;">双色球走势图</span>
         </div>
         <Focus :focus="images"></Focus>
+        <ul>
+            <li v-for="(item,key) in balls" :key="key" @click="pushToView(item)">
+                {{item.title}}
+            </li>
+        </ul>
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -18,11 +24,16 @@ export default {
     components:{Focus},
     data(){
         return {
-            images: []
+            images: [],
+            balls: [
+                {name:'redBall',title:'红球走势'},
+                {name:'blueBall',title:'蓝球走势'}
+            ]
         }
     },
     created(){
         this.loadData('/api/focus','get','images');
+        this.$store.dispatch('SetSSQData');
     }
 }
 </script>
@@ -47,6 +58,21 @@ export default {
             i{
                 font-size:40px;
                 margin-left:5px;
+            }
+        }
+        ul{
+            width:100%;
+            height:44px;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background:white;
+            li{
+                flex:1;
+                width:50%;
+                height:44px;
+                line-height: 44px;
+                text-align:center;
             }
         }
     }
