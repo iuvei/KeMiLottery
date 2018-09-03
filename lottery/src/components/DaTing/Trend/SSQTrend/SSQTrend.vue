@@ -1,0 +1,55 @@
+<template>
+    <div id="ssqTrend">
+        <div class="topBar">
+           <span 
+           style="display:flex; flex-direction:row; justify-content:center; align-items:center;"
+           @click="$router.go(-1)"
+           >
+               <i class="fa fa-angle-left"></i>
+           </span>
+           <span style="margin:0 auto;">双色球走势图</span>
+        </div>
+        <Focus :focus="images"></Focus>
+    </div>
+</template>
+<script>
+import Focus from '@/components/Commons/Focus'
+export default {
+    components:{Focus},
+    data(){
+        return {
+            images: []
+        }
+    },
+    created(){
+        this.loadData('/api/focus','get','images');
+    }
+}
+</script>
+<style lang="scss" scoped>
+    #ssqTrend{
+        position: fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background:#f4f4f4;
+        z-index:2;
+        .topBar{
+            width:100%;
+            height:50px;
+            background:#ffffff;
+            display:flex;
+            flex-direction: row;
+            align-items:center;
+            color:#000000;
+            font-size:20px;
+            i{
+                font-size:40px;
+                margin-left:5px;
+            }
+        }
+    }
+</style>
+
+
