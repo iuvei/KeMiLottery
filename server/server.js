@@ -17,7 +17,7 @@ app.all('*', function(req, res, next) {
 //设置服务器静态资源托管
 app.use(express.static(path.join(__dirname,'public')))
 //轮播图
-var imageBase = 'http://192.168.2.164:8888/'
+var imageBase = 'http://localhost:8888/'
 app.get('/api/focus',function(req,res){
     var focus = [
         {title:'翻盘赢大礼',imageUrl:imageBase+'/focus/1533891388968_1.jpg'},
