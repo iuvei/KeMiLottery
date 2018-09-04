@@ -38,6 +38,7 @@ export default new Router({
               path:'SSQTrend',
               component:SSQTrend,
               name:'ssqTrend',
+              redirect:{name:'redBall'},
               children: [
                 {path:'redBallTrend',component:RedBall,name:'redBall'},
                 {path:'blueBallTrend',component:BlueBall,name:'blueBall'}

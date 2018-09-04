@@ -10,6 +10,7 @@ const state = {
     ssqSelectedIndex:1, //双色球开奖历史的头部切换选中值
     currentSSQ: {},
     ssqData: {},
+    ballsZoushi: 0, //双色球走势
 }
 const getters = {
     redBallData(state){
@@ -28,6 +29,23 @@ const getters = {
             
         }
         return redBallData;
+    },
+    blueBallData(state){
+        if(state.ssqData.data){
+            //200条数据
+            var data = state.ssqData.data.data;
+            var blueBallData = [];
+            data.forEach((item)=>{
+                // redMissNumber
+                blueBallData.push({
+                    luckyBlue:item.luckyBlue,
+                    missNumber:item.missNumber.general.slice(33),
+                    period: item.period,
+                    winnerNumber: item.winnerNumber.slice(6)
+                })
+            })
+            return blueBallData;
+        }
     }
 }
 const mutations = {
@@ -35,7 +53,6 @@ const mutations = {
         state.selectedIndex = payload.selectedIndex;
     },
     SSQSELECTEDINDEX(state,payload){
-        console.log("修改双色球历史的tab");
         state.ssqSelectedIndex = payload.ssqSelectedIndex;
     },
     SETCURRENTSSQ(state,payload){
@@ -43,8 +60,9 @@ const mutations = {
     },
     SETSSQDATA(state,payload){
         state.ssqData = payload;
-        console.log("请求到的数据是");
-        console.log(payload);
+    },
+    BALLSZOUSHI(state,payload){
+        state.ballsZoushi = payload.selectedIndex;
     }
 }
 const actions = {

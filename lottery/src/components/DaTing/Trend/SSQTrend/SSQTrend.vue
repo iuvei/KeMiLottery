@@ -3,7 +3,7 @@
         <div class="topBar">
            <span 
            style="display:flex; flex-direction:row; justify-content:center; align-items:center;"
-           @click="$router.go(-1)"
+           @click="$router.push({name:'zst'})"
            >
                <i class="fa fa-angle-left"></i>
            </span>
@@ -11,7 +11,12 @@
         </div>
         <Focus :focus="images"></Focus>
         <ul>
-            <li v-for="(item,key) in balls" :key="key" @click="pushToView(item)">
+            <li 
+                v-for="(item,key) in balls" 
+                :key="key" 
+                @click="pushTo(item,key)"
+                :style="key==selectedIndex?{borderBottom:'2px red solid'}:{borderBottom:'none'}" 
+            >
                 {{item.title}}
             </li>
         </ul>
@@ -31,9 +36,21 @@ export default {
             ]
         }
     },
+    computed:{
+        selectedIndex(){
+            return this.$store.state.ballsZoushi;
+        }
+    },
+    methods:{
+        pushTo(item,key){
+            this.pushToView(item);
+            this.$store.commit('BALLSZOUSHI',{selectedIndex:key});
+        }
+    },
     created(){
         this.loadData('/api/focus','get','images');
         this.$store.dispatch('SetSSQData');
+        this.$store.commit('BALLSZOUSHI',{selectedIndex:0});
     }
 }
 </script>
@@ -67,6 +84,7 @@ export default {
             flex-direction: row;
             justify-content: space-between;
             background:white;
+           
             li{
                 flex:1;
                 width:50%;

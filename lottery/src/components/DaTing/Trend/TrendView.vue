@@ -3,7 +3,7 @@
         <div class="topBar">
            <span 
            style="display:flex; flex-direction:row; justify-content:center; align-items:center;"
-           @click="$router.go(-1)"
+           @click="$router.push({name:'DaTing'})"
            >
                <i class="fa fa-angle-left"></i>
            </span>
@@ -18,7 +18,6 @@
                          <i :class="item.icon" :style="item.bg"></i>
                         {{item.title}}
                     </div>
-                   
                 </li>
             </ul>
         </div>
