@@ -19,6 +19,8 @@ const mixin = {
                     this.response = response.data;
                     this[res] = response.data;
                     console.log(response.data);
+                }).catch((err)=>{
+                    console.log(err);
                 })
             }
         },
