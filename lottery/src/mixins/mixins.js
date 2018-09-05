@@ -12,7 +12,7 @@ const mixin = {
         }
     },
     methods: {
-        loadData(url,method,res){
+        loadData(url,method,res,params){
             if(method === 'get'){
                 this.$axios.get(this.$axios.defaults.baseURL+url)
                 .then((response) => {
@@ -21,6 +21,13 @@ const mixin = {
                     console.log(response.data);
                 }).catch((err)=>{
                     console.log(err);
+                })
+            }
+            if(method==='post'){
+                this.$axios.post(this.$axios.defaults.baseURL+url,params)
+                .then((response) => {
+                    console.log(response);
+                    this[res] = response.data;
                 })
             }
         },

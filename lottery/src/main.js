@@ -10,6 +10,19 @@ Vue.config.productionTip = false
 axios.defaults.baseURL = process.env.API_ROOT;
 //console.log(axios.defaults.baseURL);
 
+//登录验证
+axios.interceptors.request.use(function(config){
+  console.log("所有请求被拦截");
+  var token = localStorage.getItem('token');
+  if(token){
+    config.headers.Authorization = 'Bearer '+token;
+  }
+  return config;
+},function(error){
+  return Promise.reject(error);
+});
+
+
 //this.$axios.get()
 Vue.prototype.$axios = axios;
 
@@ -26,6 +39,7 @@ import mixins from '@/mixins/mixins.js'
 Vue.mixin(mixins);
 
 import store from './store/index'
+import '@/directives/random'
 
 /* eslint-disable no-new */
 new Vue({

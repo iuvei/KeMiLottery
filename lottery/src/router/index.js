@@ -19,6 +19,7 @@ const FaXian = () => import(/* webpackChunkName: "FaXian" */ '@/components/FaXia
 const KaiJiang = () => import(/* webpackChunkName: "KaiJiang" */ '@/components/KaiJiang/KaiJiang')
 const WoDe = () => import(/* webpackChunkName: "WoDe" */ '@/components/WoDe/WoDe')
 
+const Cart = () => import(/*webpackChunkName: "Cart"*/ '@/components/Commons/Cart')
 Vue.use(Router)
 
 export default new Router({
@@ -75,5 +76,6 @@ export default new Router({
     {path:'/FaXian',component:FaXian,name:'FaXian'},
     {path:'/KaiJiang',component:KaiJiang,name:'KaiJiang'},
     {path:'/WoDe',component:WoDe,name:'WoDe'},
+    {path:'/Cart',component:Cart,name:'Cart'}
   ]
 })

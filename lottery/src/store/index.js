@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import axios from 'axios'
+import Cart from './Cart'
 
 const state = {
     selectedIndex: 0,
@@ -74,11 +75,15 @@ const actions = {
         })
     }
 }
+const modules = {
+    Cart
+}
 export default new Vuex.Store({
     state,
     getters,
     mutations,
-    actions
+    actions,
+    modules
 })
 
 
